@@ -4,6 +4,9 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Menu from './components/menu'
 
 export default function Home() {
+  const date = new Date()
+  const year = date.getFullYear()
+  const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
   return (
     <div className="min-h-screen">
       <main>
@@ -25,7 +28,7 @@ export default function Home() {
         </Tabs>
       </main>
       <footer className="w-full bg-slate-300 h-10  text-center absolute bottom-0">
-        <p className="font-light italic text-xs leading-10">Made with ❤️ by <a href="https://kzoeps.com" target="_blank"><span className=" underline">@kzoeps</span></a></p>
+        <p className="font-light italic text-xs leading-10">Made with ❤️ by <a href="https://kzoeps.com" target="_blank"><span className=" underline">@kzoeps</span></a> © {year} {time}</p>
       </footer>
     </div>
   )
