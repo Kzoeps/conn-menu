@@ -45,7 +45,7 @@ export const getMealMenuItems = (html: string) => {
  * @returns {Meal} - can be either Breakfast, Lunch or Dinner
  */
 export const getCurrentMeal = (): Meal => {
-  const currentTime = dayjs(new Date()).tz('America/New_York');
+  const currentTime = dayjs().tz('America/New_York');
   let currentHour = currentTime.hour();
   const currentMinutesInHour = currentTime.minute() / 60; 
   currentHour += currentMinutesInHour;
