@@ -5,6 +5,6 @@ export enum MealCodes {
 }
 
 export const HARRIS_URL =
-  "https://pepperbush.conncoll.edu/fpmobile.net/shortmenu.aspx?";
+  "http://pepperbush.conncoll.edu/fpmobile.net/shortmenu.aspx?";
 
 export const ITEM_REGEX = /<div class='shortmenurecipes'>(?:<span[^>]*>)(.*)<\/div>/gm;
