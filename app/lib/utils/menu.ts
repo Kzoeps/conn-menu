@@ -1,5 +1,11 @@
 import { ITEM_REGEX, HARRIS_URL, MealCodes } from "./constants";
 import { Meal } from "./types";
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export const getMealParams = (mealName: Meal, date: string) => {
   const searchParams = {
@@ -39,9 +45,9 @@ export const getMealMenuItems = (html: string) => {
  * @returns {Meal} - can be either Breakfast, Lunch or Dinner
  */
 export const getCurrentMeal = (): Meal => {
-  const currentTime = new Date();
-  let currentHour = currentTime.getHours();
-  const currentMinutesInHour = currentTime.getMinutes() / 60; 
+  const currentTime = dayjs(new Date()).tz('America/New_York');
+  let currentHour = currentTime.hour();
+  const currentMinutesInHour = currentTime.minute() / 60; 
   currentHour += currentMinutesInHour;
   console.log(currentHour);
   if (currentHour < 11.5) {
@@ -58,7 +64,8 @@ export const getCurrentMeal = (): Meal => {
  * @param {Meal} meal
  */
 export const getDailyMenu = (date: Date, meal: Meal) => {
-  const dateParam = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  const parsedDate = dayjs(date).tz('America/New_York');
+  const dateParam = `${parsedDate.month() + 1}/${parsedDate.date()}/${parsedDate.year()}`;
   const menuParams = getMealParams(meal, dateParam);
   return getMealMenu(menuParams);
 }

@@ -1,12 +1,16 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { getCurrentMeal } from "./lib/utils"
-import { Skeleton } from "@/components/ui/skeleton"
 import Menu from './components/menu'
+import { getCurrentMeal } from "./lib/utils"
+import dayjs from "dayjs"
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
 
+dayjs.extend(utc)
+dayjs.extend(timezone)
 export default function Home() {
   const date = new Date()
   const year = date.getFullYear()
-  const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+  const time = dayjs().tz("America/New_York").format('HH:mm')
   return (
     <div className="min-h-screen">
       <main>
