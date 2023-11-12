@@ -26,7 +26,7 @@ export const getMealParams = (mealName: Meal, date: string) => {
 export const getMealMenu = async (params: URLSearchParams) => {
     const fetchUrl = HARRIS_URL + params;
     try {
-        const response = await fetch(fetchUrl, { method: "GET", next: { revalidate: 60}});
+        const response = await fetch(fetchUrl, { method: "GET", next: { revalidate: 600}});
         const data = await response.text();
         return data;
     } catch (err) {

@@ -1,16 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Menu from './components/menu'
 import { getCurrentMeal } from "./lib/utils"
-import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
-dayjs.extend(utc)
-dayjs.extend(timezone)
 
 export default function Home() {
   const date = new Date()
   const year = date.getFullYear()
-  const time = dayjs(date).tz("America/New_York").format("HH:mm")
   return (
     <div className="min-h-screen">
       <main>
@@ -32,7 +26,7 @@ export default function Home() {
         </Tabs>
       </main>
       <footer className="w-full bg-slate-300 h-10  text-center absolute bottom-0">
-        <p className="font-light italic text-xs leading-10">Made with ❤️ by <a href="https://kzoeps.com" target="_blank"><span className=" underline">@kzoeps</span></a> © {year} {time} </p>
+        <p className="font-light italic text-xs leading-10">Made with ❤️ by <a href="https://kzoeps.com" target="_blank"><span className=" underline">@kzoeps</span></a> © {year}  </p>
       </footer>
     </div>
   )
