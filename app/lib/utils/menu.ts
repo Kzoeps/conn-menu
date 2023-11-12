@@ -17,7 +17,7 @@ export const getMealParams = (mealName: Meal, date: string) => {
   return new URLSearchParams(searchParams);
 };
 
-const getMealMenu = async (params: URLSearchParams) => {
+export const getMealMenu = async (params: URLSearchParams) => {
     const fetchUrl = HARRIS_URL + params;
     try {
         const response = await fetch(fetchUrl);
@@ -28,7 +28,7 @@ const getMealMenu = async (params: URLSearchParams) => {
     }
 }
 
-const getMealMenuItems = (html: string) => {
+export const getMealMenuItems = (html: string) => {
   const matches = [...html.matchAll(ITEM_REGEX)];
   const items = matches.map((match) => match[1]);
   return items;
@@ -38,7 +38,7 @@ const getMealMenuItems = (html: string) => {
  * function to get the meal type for the current time
  * @returns {Meal} - can be either Breakfast, Lunch or Dinner
  */
-const getCurrentMeal = (): Meal => {
+export const getCurrentMeal = (): Meal => {
   const currentTime = new Date();
   let currentHour = currentTime.getHours();
   const currentMinutesInHour = currentTime.getMinutes() / 60; 
@@ -55,9 +55,10 @@ const getCurrentMeal = (): Meal => {
 /**
  *  function to get menu for a specific day 
  * @param {Date} date 
+ * @param {Meal} meal
  */
-const getDailyMenu = (date: Date) => {
+export const getDailyMenu = (date: Date, meal: Meal) => {
   const dateParam = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-  const menuParams = getMealParams(getCurrentMeal(), dateParam);
+  const menuParams = getMealParams(meal, dateParam);
   return getMealMenu(menuParams);
 }
